@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 
+☀️ Clear Sky (Sunny)	#87CEEB (Sky Blue)	A bright, clear blue sky with no clouds.
+☁️ Cloudy	#B0BEC5 (Grayish Blue)	A dull, overcast sky with grayish tones.
+🌧 Rainy	#607D8B (Dark Blue-Gray)	A wet, moody feel for rainy conditions.
+⛈ Thunderstorm	#4A148C (Dark Purple)	A dramatic stormy look with deep purples.
+❄️ Snowy	#E0F7FA (Light Cyan)	A cold, frosty feel with soft icy blue.
+🌫 Foggy/Misty	#D6D6D6 (Pale Gray)
+
+*/
+
+body{
+    /* background: #B0BEC5; */
+    background: #E0F7FA;
+    
+}
+
+.header form  input{
+    border-radius: 50%;
+}
+
+/* Ensures the container takes full viewport height */
+.container {
+    display: flex;
+    justify-content: center;  /* Centers horizontally */
+    align-items: center;  /* Centers vertically */
+    height: 100vh;  /* Full screen height */
+    /* background: linear-gradient(135deg, #87CEEB, #B0BEC5); Example gradient */
+    transition: background 0.5s ease;
+
+
+}
+
+/* Weather container styling with glass effect */
+.weather-container {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1); /* Transparent White */
+    backdrop-filter: blur(10px); /* Blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border-radius: 15px;
+   text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+    transition: background 0.5s ease;
+};
+
+.temp-details .head-container{
+    width: 100%;
+}
+
+
+
+
