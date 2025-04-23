@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const signinForm = document.getElementById("loginForm");
     const signinEmail = document.getElementById("signinEmail");
     const userPassword = document.getElementById("userPassword");
-    const loginBtn = document.getElementById("loginBtn");
     
     
   
@@ -46,27 +45,32 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     signinForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+    
         validateEmail();
         validatePassword();
-
+    
         const errorElements = document.querySelectorAll(".invalid");
-
+    
         if (signinEmail.value.trim() === "" || userPassword.value.trim() === "") {
             alert("Please fill in all fields before submitting.");
-            e.preventDefault();
             return;
         }
-
+    
         if (errorElements.length > 0) {
-            e.preventDefault();
             alert("Please correct the errors before submitting the form.");
+            return;
+        }
+    
+        const loginSuccessful = storeLoggedInUserInSession();
+    
+        if (loginSuccessful) {
+            window.location.href = "./loggedIn.html";
         } else {
-            alert("Form submitted successfully!");
-            window.location.href = "loggedIn.html";
-            // window.location.href = "https://www.sophia.org/plans-and-pricing/";
-
+            alert("Incorrect email or password.");
         }
     });
+    
 
     function showError(input, message) {
         const errorSpan = input.nextElementSibling;
@@ -84,55 +88,26 @@ document.addEventListener("DOMContentLoaded", function () {
         input.classList.remove("invalid");
     }
 
-    signinForm.addEventListener("submit" ,function(e){
-        e.preventDefault()
-        alert(1)
-        validateEmailFromStorage()
-        storeLoggedInUserInSession()
-      })
 
-      function storeLoggedInUserInSession() {
+
+    function storeLoggedInUserInSession() {
         const users = JSON.parse(localStorage.getItem("userList")) || [];
         const enteredEmail = signinEmail.value.trim();
         const enteredPassword = userPassword.value;
     
-        // Find the matching user
         const matchedUser = users.find(user => user.email === enteredEmail);
     
         if (matchedUser && matchedUser.password === enteredPassword) {
-            // Store matched user in session storage
             sessionStorage.setItem("loggedInUser", JSON.stringify(matchedUser));
-            console.log("User stored in session:", matchedUser);
-            return true; // Indicates success
+            return true;
         } else {
-            console.log("Login failed: Incorrect email or password.");
-            return false; // Indicates failure
+            return false;
         }
     }
     
-
-    function validateEmailFromStorage(){
-        const users = JSON.parse(localStorage.getItem("userList")) || [];
-        const signinEmail = document.getElementById("signinEmail").value.trim();
-        const userPassword = document.getElementById("userPassword").value;
-
-        // Find user by email
-        const matchedUser = users.find(user => user.email === signinEmail);
     
 
-        if (matchedUser) {
-            if (matchedUser.password === userPassword) {
-                console.log("Login successful:", matchedUser);
-                window.location.href = "./loggedIn.html";
-            } else {
-                console.log("Incorrect password");
-                showError(userPassword, "Incorrect password"); // Show error for wrong password
-            }
-        } else {
-            console.log("Email not found");
-            showError(emailInput, "Email not found"); // Show error for email not found
-        }
-    }
+ 
 
 });
 
