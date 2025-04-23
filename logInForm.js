@@ -63,6 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             alert("Form submitted successfully!");
             window.location.href = "loggedIn.html";
+            // window.location.href = "https://www.sophia.org/plans-and-pricing/";
+
         }
     });
 
@@ -82,10 +84,32 @@ document.addEventListener("DOMContentLoaded", function () {
         input.classList.remove("invalid");
     }
 
-    loginBtn.addEventListener("click" ,function(e){
+    signinForm.addEventListener("submit" ,function(e){
         e.preventDefault()
+        alert(1)
         validateEmailFromStorage()
+        storeLoggedInUserInSession()
       })
+
+      function storeLoggedInUserInSession() {
+        const users = JSON.parse(localStorage.getItem("userList")) || [];
+        const enteredEmail = signinEmail.value.trim();
+        const enteredPassword = userPassword.value;
+    
+        // Find the matching user
+        const matchedUser = users.find(user => user.email === enteredEmail);
+    
+        if (matchedUser && matchedUser.password === enteredPassword) {
+            // Store matched user in session storage
+            sessionStorage.setItem("loggedInUser", JSON.stringify(matchedUser));
+            console.log("User stored in session:", matchedUser);
+            return true; // Indicates success
+        } else {
+            console.log("Login failed: Incorrect email or password.");
+            return false; // Indicates failure
+        }
+    }
+    
 
     function validateEmailFromStorage(){
         const users = JSON.parse(localStorage.getItem("userList")) || [];
@@ -96,21 +120,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const matchedUser = users.find(user => user.email === signinEmail);
     
 
-        if(matchedUser){
-            if(matchedUser.password === userPassword){
-                console.log("Login successfull:" ,matchedUser);
-                window.location.href = "./loggedIn.html";  
-                
-            }
-            else{
+        if (matchedUser) {
+            if (matchedUser.password === userPassword) {
+                console.log("Login successful:", matchedUser);
+                window.location.href = "./loggedIn.html";
+            } else {
                 console.log("Incorrect password");
-                
+                showError(userPassword, "Incorrect password"); // Show error for wrong password
             }
-            
-        }
-        else{
-            console.log("email not found");
-            
+        } else {
+            console.log("Email not found");
+            showError(emailInput, "Email not found"); // Show error for email not found
         }
     }
 
