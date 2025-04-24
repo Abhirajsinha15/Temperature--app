@@ -1,33 +1,20 @@
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Retrieve user info from sessionStorage
-    const storedName = sessionStorage.getItem("userName");
-    const storedEmail = sessionStorage.getItem("userEmail");
+    const storedUser = sessionStorage.getItem("loggedInUser");
+    console.log(storedUser);
+    
 
-    if (storedName && storedEmail) {
-        console.log("User Data Retrieved:");
-        console.log("Name:", storedName);
-        console.log("Email:", storedEmail);
-
-        // Update UI
-        document.getElementById("userName").innerText = storedName;
-        document.getElementById("userEmail").innerText = storedEmail;
+    if (storedUser) {
+      const userObj = JSON.parse(storedUser);
+      console.log("Name:", userObj.fullName);
+    
+      document.getElementById("userName").innerText = userObj.fullName;
     } else {
-        console.log("No user data found. Redirecting...");
-        // window.location.href = "index.html"; // Uncomment to enable redirect
+      console.log("No user data found.");
     }
 });
 
-
-// function logout() {
-//             const logOutBtn = document.getElementById("logOut")
-
-//             logOutBtn.addEventListener("click" , function(){
-//                 window.location.href = "loginForm.html";
-//             })
-//         }
-//         logout()
     
 function logout() {
     const logOutBtn = document.getElementById("logOut");
