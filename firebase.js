@@ -39,6 +39,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     localStorage.setItem("userEmail", user.email);
                     localStorage.setItem("userProfilePic", user.photoURL);
 
+                        
+                    // Also store in sessionStorage
+                                const loggedInUser = {
+                                fullName: user.displayName,
+                                email: user.email,
+                                profilePic: user.photoURL
+                                };
+                                sessionStorage.setItem("userList", JSON.stringify(loggedInUser));
+
                     console.log("Redirecting to loggedIn.html...");
                     window.location.href = "./loggedIn.html"; // Redirect after login
                 })
