@@ -47,12 +47,45 @@ body{
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
     border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
     transition: background 0.5s ease;
-};
+}
 
 .temp-details .head-container{
     width: 100%;
 }
 
+ @media (min-width: 576px) and (max-width: 767.98px) {
+
+    .form-container{
+        margin: 15px 0;
+    }
+
+  .header form input {
+    width: 100%;
+    padding: 10px;
+   
+  }
 
 
 
+  .container {
+    flex-direction: column;
+    padding: 20px;
+    height: auto;
+  }
+
+  .weather-container {
+    width: 90%;
+    max-width: 95%;
+    margin: 50px auto;
+}
+
+  .temp-details .head-container {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .temp-img img{
+    width: 30%;
+  }
+ }
