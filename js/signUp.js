@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const passInput = document.getElementById("userPassword");
     const confirmPassInput = document.getElementById("confirmPassword");
     const phoneInput = document.getElementById("phoneNumber");
-    const ageInput = document.getElementById("userAge"); 
     const firstName = document.getElementById("firstName");
     const lastName = document.getElementById("lastName");
     const nameInputs = [firstName , lastName]
@@ -111,21 +110,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Validate Age
-    ageInput.addEventListener("change", validateAge);
-    ageInput.addEventListener("blur", validateAge);
-
    
 
-    function validateAge() {
-        if (ageInput.value.trim() === "") {
-            showError(ageInput, "Age cannot be empty.");
-        } else if (ageInput.value  < 18) {
-            showError(ageInput, "You must be 18 or older.");
-        } else {
-            showSuccess(ageInput);
-        }
-    }
+   
 
    
 
@@ -138,13 +125,11 @@ document.addEventListener("DOMContentLoaded", function () {
         validatePassword();
         validateConfirmPassword();
         validatePhone();
-        validateAge();
 
 
         // No validation errors — proceed to save the data
         const errorElements = document.querySelectorAll(".invalid");
         if (errorElements.length > 0) {
-            alert("Please correct the errors before submitting the form.");
             return;
         }
         
