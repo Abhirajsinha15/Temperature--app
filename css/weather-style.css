@@ -53,6 +53,22 @@ body{
     width: 100%;
 }
 
+ @media (min-width: 320px) and (max-width: 575.98px) {
+
+  .form-container form  {
+    flex-direction: column;
+    
+
+   
+  }
+   .form-container input ,button ,h2{
+    margin: 15px 0;
+   }
+
+  .temp-img img{
+    width: 100%;
+  }
+ }
  @media (min-width: 576px) and (max-width: 767.98px) {
 
     .form-container{
