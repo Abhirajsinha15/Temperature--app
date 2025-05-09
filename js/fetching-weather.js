@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
       switch (weather.toLowerCase()) {
         case "clear":
           weatherImage.src = "./images/sun.png";
-          body.style.backgroundColor = "#FFBF00";
+          body.style.backgroundColor = "#87CEEB";
           break;
         case "clouds":
           weatherImage.src = "./images/cloudy.png";
